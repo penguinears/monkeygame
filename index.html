@@ -50,6 +50,22 @@
       text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
     }
 
+    /* Controls panel */
+    .controls {
+      background: rgba(255,255,255,0.85);
+      padding: 10px 15px;
+      border-radius: 10px;
+      margin: 10px 0;
+      text-align: center;
+      font-size: 0.95rem;
+      max-width: 600px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .controls strong {
+      color: #ff6600;
+    }
+
     /* Responsive iframe container */
     .iframe-container {
       position: relative;
@@ -77,6 +93,25 @@
       text-align: center;
     }
 
+    /* Fullscreen button */
+    .fullscreen-btn {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 8px 16px;
+      background: #ff6600;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: background 0.2s;
+    }
+
+    .fullscreen-btn:hover {
+      background: #ff8533;
+    }
+
     /* Mobile optimizations */
     @media (max-width: 768px) {
       h1 {
@@ -90,6 +125,11 @@
       .iframe-container {
         padding-top: 75%; /* taller aspect ratio for small screens */
       }
+
+      .controls {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+      }
     }
   </style>
 </head>
@@ -98,8 +138,18 @@
     <h1>Monkey Unblocked Game</h1>
   </header>
 
-  <div class="iframe-container">
+  <!-- Controls info -->
+  <div class="controls">
+    <p><strong>Controls:</strong> Use <strong>Arrow Keys</strong> to move, <strong>Space</strong> to jump, <strong>P</strong> to pause.</p>
+  </div>
+
+  <!-- Fullscreen button -->
+  <button class="fullscreen-btn" onclick="openFullscreen()">Enter Fullscreen</button>
+
+  <!-- Game iframe -->
+  <div class="iframe-container" id="gameContainer">
     <iframe 
+      id="gameFrame"
       src="https://html-classic.itch.zone/html/12435346/index.html" 
       allowfullscreen="true"
       allow="autoplay; fullscreen *; geolocation; microphone; camera; midi; monetization; xr-spatial-tracking; gamepad; gyroscope; accelerometer; cross-origin-isolated; web-share">
@@ -109,5 +159,19 @@
   <footer>
     <p>Play unblocked Monkey game at school and work! Made by Leo</p>
   </footer>
+
+  <script>
+    // Fullscreen function
+    function openFullscreen() {
+      const elem = document.getElementById("gameContainer");
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if (elem.webkitRequestFullscreen) { /* Safari */
+        elem.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) { /* IE11 */
+        elem.msRequestFullscreen();
+      }
+    }
+  </script>
 </body>
 </html>
