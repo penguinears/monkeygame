@@ -4,24 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>monkey Unblocked Game </title>
+  <title>Monkey Unblocked Game</title>
   
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Play Hamburger Games unblocked at school! Free fun browser game for kids and students. No downloads, instant play online." />
-  <meta name="keywords" content="unblocked games, school games, play at school, free browser games, hamburger game, itch.io unblocked" />
+  <meta name="description" content="Play Monkey Games unblocked at school! Free fun browser game for kids and students. No downloads, instant play online." />
+  <meta name="keywords" content="unblocked games, school games, play at school, free browser games, monkey game, itch.io unblocked" />
   <meta name="robots" content="index, follow" />
 
   <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="monkey Unblocked Game " />
-  <meta property="og:description" content="Play safe Games unblocked at school instantly. Free browser game fun for kids." />
+  <meta property="og:title" content="Monkey Unblocked Game" />
+  <meta property="og:description" content="Play Monkey Games unblocked at school instantly. Free browser game fun for kids." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Hamburger_icon.svg/1024px-Hamburger_icon.svg.png" />
   <meta property="og:url" content="https://hamburger-unblocked.vercel.app" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Monkey Unblocked Game " />
-  <meta name="twitter:description" content="Play monkey Games unblocked at school instantly. Free browser game fun for kids." />
+  <meta name="twitter:title" content="Monkey Unblocked Game" />
+  <meta name="twitter:description" content="Play Monkey Games unblocked at school instantly. Free browser game fun for kids." />
 
   <style>
     body {
@@ -31,48 +31,83 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       min-height: 100vh;
       color: #222;
+      padding: 10px;
+      box-sizing: border-box;
     }
+
     header {
       text-align: center;
-      padding: 20px;
+      padding: 20px 10px;
     }
+
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       margin: 0;
       color: #fff;
       text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
     }
-    iframe {
-      border: none;
-      width: 90vw;
+
+    /* Responsive iframe container */
+    .iframe-container {
+      position: relative;
+      width: 100%;
       max-width: 1200px;
-      height: 80vh;
+      padding-top: 56.25%; /* 16:9 aspect ratio */
+      margin: 0 auto;
+    }
+
+    .iframe-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
       border-radius: 12px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
+
     footer {
-      margin-top: 10px;
+      margin: 15px 0;
       font-size: 0.9rem;
       color: #333;
+      text-align: center;
+    }
+
+    /* Mobile optimizations */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      footer {
+        font-size: 0.8rem;
+      }
+
+      .iframe-container {
+        padding-top: 75%; /* taller aspect ratio for small screens */
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>monkey Unblocked Game</h1>
+    <h1>Monkey Unblocked Game</h1>
   </header>
 
-  <iframe 
-    src="https://html-classic.itch.zone/html/12435346/index.html" 
-    allowfullscreen="true"
-    allow="autoplay; fullscreen *; geolocation; microphone; camera; midi; monetization; xr-spatial-tracking; gamepad; gyroscope; accelerometer; cross-origin-isolated; web-share">
-  </iframe>
+  <div class="iframe-container">
+    <iframe 
+      src="https://html-classic.itch.zone/html/12435346/index.html" 
+      allowfullscreen="true"
+      allow="autoplay; fullscreen *; geolocation; microphone; camera; midi; monetization; xr-spatial-tracking; gamepad; gyroscope; accelerometer; cross-origin-isolated; web-share">
+    </iframe>
+  </div>
 
   <footer>
-    <p>Play unblocked monkey game at school and work! Made By Leo</p>
+    <p>Play unblocked Monkey game at school and work! Made by Leo</p>
   </footer>
 </body>
 </html>
