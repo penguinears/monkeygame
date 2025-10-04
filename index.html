@@ -3,26 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Monkey Game Online</title>
-  
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Play Monkey Game online! Free browser game fun for kids and students. No downloads, instant play in your browser." />
-  <meta name="keywords" content="online games, school games, play at school, free browser games, monkey game, HTML5 game" />
-  <meta name="robots" content="index, follow" />
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="Monkey Game Online" />
-  <meta property="og:description" content="Play Monkey Game instantly in your browser. Free fun for kids and students." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Hamburger_icon.svg/1024px-Hamburger_icon.svg.png" />
-  <meta property="og:url" content="https://hamburger-unblocked.vercel.app" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Monkey Game Online" />
-  <meta name="twitter:description" content="Play Monkey Game instantly in your browser. Free fun for kids and students." />
-
   <style>
     body {
       margin: 0;
@@ -50,7 +31,6 @@
       text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
     }
 
-    /* Controls panel */
     .controls {
       background: rgba(255,255,255,0.85);
       padding: 10px 15px;
@@ -62,16 +42,11 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
-    .controls strong {
-      color: #ff6600;
-    }
-
-    /* Responsive iframe container */
     .iframe-container {
       position: relative;
       width: 100%;
       max-width: 1200px;
-      padding-top: 56.25%; /* 16:9 aspect ratio */
+      padding-top: 56.25%;
       margin: 0 auto;
     }
 
@@ -93,7 +68,6 @@
       text-align: center;
     }
 
-    /* Fullscreen button */
     .fullscreen-btn {
       display: inline-block;
       margin-bottom: 10px;
@@ -105,31 +79,47 @@
       font-weight: bold;
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      transition: background 0.2s;
     }
 
-    .fullscreen-btn:hover {
-      background: #ff8533;
+    /* Mobile Arrow Controls */
+    .mobile-controls {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: grid;
+      grid-template-areas: 
+        ". up ."
+        "left . right"
+        ". down .";
+      gap: 10px;
+      z-index: 9999;
     }
 
-    /* Mobile optimizations */
+    .mobile-controls button {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.85);
+      font-size: 1.5rem;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      cursor: pointer;
+    }
+
+    .mobile-controls button:active {
+      background: #ffcc33;
+    }
+
+    .up { grid-area: up; }
+    .down { grid-area: down; }
+    .left { grid-area: left; }
+    .right { grid-area: right; }
+
     @media (max-width: 768px) {
-      h1 {
-        font-size: 1.8rem;
-      }
-
-      footer {
-        font-size: 0.8rem;
-      }
-
-      .iframe-container {
-        padding-top: 75%; /* taller aspect ratio for small screens */
-      }
-
-      .controls {
-        font-size: 0.85rem;
-        padding: 8px 12px;
-      }
+      .mobile-controls { display: grid; }
     }
   </style>
 </head>
@@ -138,15 +128,12 @@
     <h1>Monkey Game Online</h1>
   </header>
 
-  <!-- Controls info -->
   <div class="controls">
-    <p><strong>Controls:</strong> Use <strong>Arrow Keys</strong> to move, <strong>Space</strong> to jump, <strong>P</strong> to pause.</p>
+    <p><strong>Controls:</strong> Use <strong>Arrow Keys</strong> to move.</p>
   </div>
 
-  <!-- Fullscreen button -->
   <button class="fullscreen-btn" onclick="openFullscreen()">Enter Fullscreen</button>
 
-  <!-- Game iframe -->
   <div class="iframe-container" id="gameContainer">
     <iframe 
       id="gameFrame"
@@ -156,21 +143,44 @@
     </iframe>
   </div>
 
+  <!-- Mobile Arrow Buttons -->
+  <div class="mobile-controls">
+    <button class="up" data-key="ArrowUp">↑</button>
+    <button class="left" data-key="ArrowLeft">←</button>
+    <button class="right" data-key="ArrowRight">→</button>
+    <button class="down" data-key="ArrowDown">↓</button>
+  </div>
+
   <footer>
     <p>Play Monkey Game safely in your browser! Made by Leo</p>
   </footer>
 
   <script>
-    // Fullscreen function
     function openFullscreen() {
       const elem = document.getElementById("gameContainer");
       if (elem.requestFullscreen) {
         elem.requestFullscreen();
-      } else if (elem.webkitRequestFullscreen) { /* Safari */
+      } else if (elem.webkitRequestFullscreen) { 
         elem.webkitRequestFullscreen();
-      } else if (elem.msRequestFullscreen) { /* IE11 */
+      } else if (elem.msRequestFullscreen) { 
         elem.msRequestFullscreen();
       }
+    }
+
+    // Send arrow key events from buttons
+    const iframe = document.getElementById("gameFrame");
+    document.querySelectorAll(".mobile-controls button").forEach(btn => {
+      btn.addEventListener("touchstart", () => {
+        sendKey(btn.dataset.key, "keydown");
+      });
+      btn.addEventListener("touchend", () => {
+        sendKey(btn.dataset.key, "keyup");
+      });
+    });
+
+    function sendKey(key, type) {
+      const event = new KeyboardEvent(type, { key });
+      iframe.contentWindow.dispatchEvent(event);
     }
   </script>
 </body>
